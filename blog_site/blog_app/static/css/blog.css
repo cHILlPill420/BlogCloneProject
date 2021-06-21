@@ -1,6 +1,6 @@
-body{
+/* body{
     background: linear-gradient(90deg,#51b9ff,#7785ff 52.6%,#b279ff 73.96%,#ff81ed);
-}
+} */
 
 .techfont{
     font-family: 'Viaoda Libre', sans-serif;
@@ -18,7 +18,7 @@ body{
 }
 
 h1{
-    font-family: Oak,sans-serif;
+    font-family: 'Varela Round', sans-serif;
     color: rgba(0,0,0,0.7);
     position:relative;
     top:calc(50% - 80px);
@@ -30,7 +30,7 @@ h1{
     filter:hue-rotate(0deg);
     color:linear-gradient(45deg,#0f8,#08f);
     animation:hue 10000ms infinite linear;
-   
+    background: linear-gradient(90deg,#51b9ff,#7785ff 52.6%,#b279ff 73.96%,#ff81ed);
   }
   
   @keyframes spinify {
@@ -62,3 +62,23 @@ h1{
     100%{filter:hue-rotate(360deg);}
     
   }
+
+.postdate{
+  text-align: center;
+}
+
+.posttitle{
+  font-family: 'Viaoda Libre', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.postcontent{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.5em;
+}
+
+.btn-comment{
+  position: absolute;
+  right: 0px;
+}
