@@ -3,10 +3,10 @@
     <h1 class="posttitle loader">{{ post.title }}</h1>
     {% if post.published_date %}
         <div class="date postdate">
-            {{ post.publishe_date }}
+            {{ post.published_date }}
         </div>
     {% else %}
-        <a href="{% url 'post.publish' pk = post.pk %}" class="btn btn-default">Publish</a>
+        <a href="{% url 'post.publish' pk=post.pk %}" class="btn btn-default">Publish</a>
     {% endif %}
     <p class="postcontent">{{ post.title|save|linebreaksbr }}</p>
     {% if user.is_authenticated %}
@@ -18,7 +18,7 @@
         </a>
     {% endif %}
     <hr>
-    <a href="{% url 'add_comment_to_post pk = post.pk %}">Add Comment</a>
+    <a href="{% url 'add_comment_to_post pk=post.pk %}">Add Comment</a>
     <div class="container"> 
         {% for comment is post.comments.all %}
             <br>

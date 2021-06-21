@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ( TemplateView, ListView, 
-                                    CreateView, UpdateView)
+                                    CreateView, UpdateView, DetailView, DeleteView)
 
 # Create your views here.
 
@@ -18,7 +18,7 @@ class PostListView(ListView):
     model = Post
     
     def get_queryset(self):
-        return Post.object.filter(published_date__lte = timezone.now()).order_by('-published_date')
+        return Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
 
 class PostDetailView(DetailView):
     model = Post
@@ -29,13 +29,13 @@ class CreatPostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
 
-class UpdatePostView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
     redirect_field_name = 'blog_app/post_detail.html'
     form_class = PostForm
     model = Post
 
-class UpdatePostView(LoginRequiredMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     login_url = '/login/'
     redirect_field_name = 'blog_app/post_detail.html'
     form_class = PostForm
@@ -48,7 +48,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.object.filter(published_date__isnull = True).order_by('created_date')
+        return Post.objects.filter(published_date__isnull = True).order_by('created_date')
 
 ##########################################################################################
 @login_required
