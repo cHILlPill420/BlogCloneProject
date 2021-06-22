@@ -36,9 +36,9 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
-    redirect_field_name = 'blog_app/post_detail.html'
-    form_class = PostForm
+    # login_url = '/login/'
+    # redirect_field_name = 'blog_app/post_detail.html'
+    # form_class = PostForm
     model = Post
     success_url = reverse_lazy('post_list')
 
@@ -65,7 +65,8 @@ def add_comment_to_post(request, pk):
         if form.is_valid():
             comment = form.save(commit = False)
             comment.post = post
-            return render(request, 'post_detail', pk = post.pk)
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
         else:
             raise ValidationError('Comment Not Valid')
     else:
@@ -76,11 +77,11 @@ def add_comment_to_post(request, pk):
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk = pk)
     comment.approve()
-    return redirect('post_detail',pk = comment.post.pk)
+    return redirect('post_detail', pk = comment.post.pk)
 
 @login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk = pk)
     post_pk = comment.post.pk
     comment.delete()
-    return redirect('post_list', pk = post_pk)
+    return redirect('post_list', pk = post.pk)
