@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'',include('blog_app.urls')),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name="login"),
     #url(r'accounts/login/$', views.login, name = 'login'),
-    path('logout/', LogoutView.as_view(), name="logout", kwargs = {'next_page':'/'}),
+    path('logout/', LogoutView.as_view( template_name='blog_app/post_list', next_page = '/'), name="logout"),
     #url(r'accounts/logout/$', views.logout, name = 'logout', kwargs = {'next_page':'/'}),
 ]

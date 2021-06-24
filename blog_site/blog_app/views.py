@@ -57,7 +57,7 @@ def post_publish(request, pk):
     post.publish()
     return redirect('post_detail', pk = pk)
 
-@login_required
+#@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk = pk)
     if request.method == 'POST':
@@ -67,8 +67,8 @@ def add_comment_to_post(request, pk):
             comment.post = post
             comment.save()
             return redirect('post_detail', pk=post.pk)
-        else:
-            raise ValidationError('Comment Not Valid')
+        # else:
+        #     raise ValidationError('Comment Not Valid')
     else:
         form = CommentForm()
     return render(request, 'blog_app/comment_form.html', {'form':form})
@@ -84,4 +84,4 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk = pk)
     post_pk = comment.post.pk
     comment.delete()
-    return redirect('post_list', pk = post.pk)
+    return redirect('post_detail', pk = post_pk)

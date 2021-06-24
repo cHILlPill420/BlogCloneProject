@@ -31,7 +31,7 @@ class Comment(models.Model):
     approved_comments = models.BooleanField(default=False)
 
     def approve(self):
-        self.approved_comment = True
+        self.approved_comments = True
         self.save()
     def get_absolute_url(self):
         return reverse("post_list")
